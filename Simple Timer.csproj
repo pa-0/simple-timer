@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>timerIcon25m.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -98,6 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ThePlayIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TimerIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="timerIcon25m.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

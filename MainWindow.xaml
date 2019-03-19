@@ -8,7 +8,7 @@
         WindowStyle="None" AllowsTransparency="true"
         HorizontalAlignment="Center" VerticalAlignment="Center"
         Background="#FF1E1E21" SizeToContent="WidthAndHeight"
-        MouseEnter="window_MouseEnter"
+        MouseEnter="window_MouseEnter" Icon="timerIcon25m.ico"
         MouseLeave="window_MouseLeave" KeyDown="window_KeyDown" Topmost="True">
     <Grid>
         <Grid.RowDefinitions>
