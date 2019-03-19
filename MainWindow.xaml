@@ -33,7 +33,7 @@
             </Grid.ColumnDefinitions>
             <Button Name="playPauseBtn" Grid.Column="0" Background="#FF333337"
                     Foreground="White" BorderBrush="#FF1E1E21"
-                    BorderThickness="2" Click="playPauseBtn_Click">>
+                    BorderThickness="2" Click="playPauseBtn_Click" Content="{Binding PlayBtnIcon}">
             </Button>
 
             <Button Name="stopBtn" Grid.Column="1" Background="#FF333337"

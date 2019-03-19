@@ -11,6 +11,9 @@ namespace Simple_Timer
     class Timer : INotifyPropertyChanged
     {
         private System.Timers.Timer t;
+        private const string playIcon = ">";
+        private const string pauseIcon = "||";
+        private string playBtnIcon = playIcon;
 
         public Timer() : this(Settings.DefaultTime) { }
 
@@ -21,10 +24,24 @@ namespace Simple_Timer
             BeginUpdate();
         }
 
-        public string PlayIcon { get { return ">"; } }
-        public string PauseIcon { get { return "||"; } }
+        public string PlayBtnIcon { get { return playBtnIcon; } }
 
-        public bool IsEnabled { get { return t.Enabled; } set { t.Enabled = value; } }
+        public bool IsEnabled
+        {
+            get
+            {
+                return t.Enabled;
+            }
+            set
+            {
+                if (value == true)
+                    playBtnIcon = pauseIcon;
+                else
+                    playBtnIcon = playIcon;
+                t.Enabled = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("PlayBtnIcon"));
+            }
+        }
 
         public TimeSpan Time { get; set; }
 
@@ -33,14 +50,17 @@ namespace Simple_Timer
         public void Start()
         {
             t.Start();
+            playBtnIcon = pauseIcon;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PlayBtnIcon"));
         }
 
         public void Stop()
         {
             t.Stop();
+            playBtnIcon = playIcon;
             Console.Beep();
             Time = Settings.DefaultTime;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Time"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PlayBtnIcon"));
         }
 
         private void BeginUpdate()

@@ -103,9 +103,6 @@
     <None Include="Resources\ThePlayIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="TimerIcon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="timerIcon25m.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

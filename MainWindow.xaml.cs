@@ -22,8 +22,6 @@ namespace Simple_Timer
         public MainWindow()
         {
             InitializeComponent();
-
-            //timeInputTxt.Text = Settings.DefaultTime.ToString("mm\\:ss");
             DataContext = timer;
         }
 
@@ -41,7 +39,6 @@ namespace Simple_Timer
         private void playPauseBtn_Click(object sender, RoutedEventArgs e)
         {
             timer.IsEnabled = timer.IsEnabled ? false : true;
-            SwitchBetweenPlayPauseIcon();
         }
 
         private void stopBtn_Click(object sender, RoutedEventArgs e)
@@ -49,24 +46,14 @@ namespace Simple_Timer
             if (timer.IsEnabled)
             {
                 timer.Stop();
-                SwitchBetweenPlayPauseIcon();
             }
         }
 
-        private void SwitchBetweenPlayPauseIcon()
-        {
-            if (playPauseBtn.Content.ToString() == timer.PlayIcon)
-                playPauseBtn.Content = timer.PauseIcon;
-            else
-                playPauseBtn.Content = timer.PlayIcon;
-        }
-        // Window handlers
         private void window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
                 timer.IsEnabled = timer.IsEnabled ? false : true;
-                SwitchBetweenPlayPauseIcon();
                 defocus();
             }
             if (e.Key == Key.Up)
