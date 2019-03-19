@@ -1,0 +1,45 @@
+﻿<Window x:Class="Simple_Timer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Simple_Timer"
+        mc:Ignorable="d" Title="Compact Timer" Height="100" Width="110"
+        WindowStyle="None" AllowsTransparency="true"
+        HorizontalAlignment="Center" VerticalAlignment="Center"
+        Background="#FF1E1E21" SizeToContent="WidthAndHeight"
+        MouseEnter="window_MouseEnter"
+        MouseLeave="window_MouseLeave" KeyDown="window_KeyDown" Topmost="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox Name="timeInputTxt" Grid.Row="0" FontSize="40"
+            Text="{Binding Time, StringFormat=mm\\:ss, Mode=OneWay, FallbackValue=05:00}"
+            PreviewMouseLeftButtonDown="timeInputTxt_PreviewMouseLeftButtonDown"
+            MouseRightButtonDown="timeInputTxt_MouseRightButtonDown"
+            TextChanged="timeInputTxt_TextChanged" Height="55" Width="105"
+            ContextMenu="{x:Null}" Margin="5 5 5 5" Padding="0 -5 0 0" BorderThickness="0"
+            Cursor="Arrow" Background="#FF39393E" Foreground="White"
+            HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        </TextBox>
+
+        <Grid Name="controlsGrid" Height="40px" Visibility="Collapsed"
+              Grid.Row="1" Margin="3 -3 3 2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Name="playPauseBtn" Grid.Column="0" Background="#FF333337"
+                    Foreground="White" BorderBrush="#FF1E1E21"
+                    BorderThickness="2" Click="playPauseBtn_Click">>
+            </Button>
+
+            <Button Name="stopBtn" Grid.Column="1" Background="#FF333337"
+                    Foreground="White" BorderBrush="#FF1E1E21" 
+                    BorderThickness="2" Click="stopBtn_Click">■
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
