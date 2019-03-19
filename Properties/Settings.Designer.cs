@@ -25,7 +25,7 @@ namespace Simple_Timer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("00:05:00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("00:25:00")]
         public global::System.TimeSpan defaultTime {
             get {
                 return ((global::System.TimeSpan)(this["defaultTime"]));
