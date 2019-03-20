@@ -58,8 +58,8 @@ namespace Simple_Timer
         {
             t.Stop();
             playBtnIcon = playIcon;
-            Console.Beep();
             Time = Settings.DefaultTime;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Time"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PlayBtnIcon"));
         }
 
@@ -74,7 +74,10 @@ namespace Simple_Timer
                     {
                         Time = Time.Subtract(TimeSpan.FromSeconds(1));
                         if (Time == TimeSpan.Zero)
+                        {
+                            Console.Beep();
                             Stop();
+                        }
                         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Time"));
                     }
 
