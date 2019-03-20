@@ -68,13 +68,15 @@ namespace Simple_Timer
             }
             if (e.Key == Key.Up)
             {   // add time
-                //timer.SetTime(timer.Time + Settings.TimeStep);
+                timer.Time += Settings.TimeStep;
             }
             if (e.Key == Key.Down)
             {   // reduce time
-                //var time = timer.Time - Settings.TimeStep;
-                //if (time.TotalSeconds >= 0) // should not go below zero
-                //    timer.SetTime(time);
+                var time = timer.Time - Settings.TimeStep;
+                if (time.TotalSeconds >= 0)
+                {
+                    timer.Time = time;
+                }
             }
         }
 

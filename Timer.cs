@@ -43,7 +43,16 @@ namespace Simple_Timer
             }
         }
 
-        public TimeSpan Time { get; set; }
+        private TimeSpan time;
+        public TimeSpan Time
+        {
+            get { return time; }
+            set
+            {
+                time = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Time"));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -61,6 +70,11 @@ namespace Simple_Timer
             Time = Settings.DefaultTime;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Time"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PlayBtnIcon"));
+        }
+
+        public override string ToString()
+        {
+            return Time.ToString("mm\\:ss");
         }
 
         private void BeginUpdate()
