@@ -22,6 +22,7 @@ namespace Simple_Timer
         WinForms.NotifyIcon notifyIcon = null;
         WinForms.ContextMenu contextMenu;
         WinForms.MenuItem exitAppMenuItem;
+        WinForms.MenuItem aboutMenuItem;
         System.ComponentModel.IContainer components;
 
         readonly Timer timer = new Timer();
@@ -162,6 +163,7 @@ namespace Simple_Timer
         {
             contextMenu = new WinForms.ContextMenu();
             exitAppMenuItem = new WinForms.MenuItem();
+            aboutMenuItem = new WinForms.MenuItem();
 
             this.components = new System.ComponentModel.Container();
             //initialize menu items
@@ -170,8 +172,15 @@ namespace Simple_Timer
             exitAppMenuItem.Click += (sender, e) => {
                 Application.Current.Shutdown();
             };
+            aboutMenuItem.Index = 1;
+            aboutMenuItem.Text = "About";
+            aboutMenuItem.Click += (sendmer, e) => {
+                MessageBox.Show("Author: Slava Logos\nEmail: xivilaim@gmail.com",
+                    "Thank you for taking interest!");
+            };
             // initialize context menu
             contextMenu.MenuItems.AddRange(new WinForms.MenuItem[] {
+                aboutMenuItem,
                 exitAppMenuItem
             });
 
