@@ -59,5 +59,15 @@ namespace Simple_Timer.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon timerIcon25m {
+            get {
+                object obj = ResourceManager.GetObject("timerIcon25m", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using System.Threading;
+using WinForms = System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 
@@ -18,6 +19,10 @@ namespace Simple_Timer
         const int expandDelay = 500;
         const int contractDelay = 2000;
         const int mouseDownDelay = 150;
+        WinForms.NotifyIcon notifyIcon = null;
+        WinForms.ContextMenu contextMenu;
+        WinForms.MenuItem exitAppMenuItem;
+        System.ComponentModel.IContainer components;
 
         readonly Timer timer = new Timer();
 
@@ -26,6 +31,8 @@ namespace Simple_Timer
             InitializeComponent();
             DataContext = timer;
             ShowInTaskbar = false;
+
+            SetupTrayIcon();
         }
 
         private void timeInputTxt_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -149,9 +156,29 @@ namespace Simple_Timer
             FocusManager.SetFocusedElement(scope, parent as IInputElement);
         }
 
-        private void hideWindow()
+        private void SetupTrayIcon()
         {
+            contextMenu = new WinForms.ContextMenu();
+            exitAppMenuItem = new WinForms.MenuItem();
 
+            this.components = new System.ComponentModel.Container();
+            //initialize menu items
+            exitAppMenuItem.Index = 0;
+            exitAppMenuItem.Text = "Exit";
+            exitAppMenuItem.Click += (sender, e) => {
+                Application.Current.Shutdown();
+            };
+            // initialize context menu
+            contextMenu.MenuItems.AddRange(new WinForms.MenuItem[] {
+                exitAppMenuItem
+            });
+
+            notifyIcon = new WinForms.NotifyIcon(this.components);
+            notifyIcon.Text = "Compact Timer";
+            notifyIcon.Visible = true;
+            notifyIcon.Icon = Properties.Resources.timerIcon25m;
+            notifyIcon.ContextMenu = contextMenu;
         }
+
     }
 }
