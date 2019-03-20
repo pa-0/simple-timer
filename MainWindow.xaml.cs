@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using System.Threading;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace Simple_Timer
 {
@@ -23,6 +25,7 @@ namespace Simple_Timer
         {
             InitializeComponent();
             DataContext = timer;
+            ShowInTaskbar = false;
         }
 
         private void timeInputTxt_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -134,7 +137,8 @@ namespace Simple_Timer
             }
         }
 
-        private void defocus() {
+        private void defocus()
+        {
             FrameworkElement parent = (FrameworkElement)timeInputTxt.Parent;
             while (parent != null && parent is IInputElement && !((IInputElement)parent).Focusable)
             {
@@ -143,6 +147,11 @@ namespace Simple_Timer
 
             DependencyObject scope = FocusManager.GetFocusScope(timeInputTxt);
             FocusManager.SetFocusedElement(scope, parent as IInputElement);
+        }
+
+        private void hideWindow()
+        {
+
         }
     }
 }
