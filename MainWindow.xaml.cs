@@ -14,6 +14,7 @@ namespace Simple_Timer
     public partial class MainWindow : Window
     {
         private bool mouseOverWindow = false;
+        private bool customTime = false;
         private const byte windowHeightFull = 120;
         private const byte windowHeightShort = 60;
         private const int expandDelay = 500;
@@ -33,7 +34,6 @@ namespace Simple_Timer
             InitializeComponent();
             DataContext = timer;
             ShowInTaskbar = false;
-
             SetupTrayIcon();
         }
 
@@ -43,13 +43,18 @@ namespace Simple_Timer
             DragMove();
         }
 
-        private void timeInputTxt_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void timeInputTxt_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            timeInputTxt.Focus();
+            customTime = true;
         }
 
         private void playPauseBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (customTime)
+            {
+                timer.Time = ParseTimeInput();
+                customTime = false;
+            }
             timer.IsEnabled = timer.IsEnabled ? false : true;
         }
 
@@ -63,17 +68,27 @@ namespace Simple_Timer
                 timer.Time = Settings.DefaultTime;
         }
 
-        private void window_KeyDown(object sender, KeyEventArgs e)
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
+                if (customTime)
+                {
+                    timer.Time = ParseTimeInput();
+                    customTime = false;
+                }
                 timer.IsEnabled = timer.IsEnabled ? false : true;
                 defocus();
             }
+        }
+
+        private void window_KeyDown(object sender, KeyEventArgs e)
+        {
             if (e.Key == Key.Up)
             {   // add time
                 timer.Time += Settings.TimeStep;
                 Settings.DefaultTime = timer.Time;
+                customTime = true;
             }
             if (e.Key == Key.Down)
             {   // reduce time
@@ -82,6 +97,7 @@ namespace Simple_Timer
                 {
                     timer.Time = time;
                     Settings.DefaultTime = timer.Time;
+                    customTime = true;
                 }
             }
         }
@@ -119,28 +135,49 @@ namespace Simple_Timer
                     }
                 });
             });
+            if (timeInputTxt.IsFocused)
+                defocus();
         }
 
-        private void timeInputTxt_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (timeInputTxt.IsFocused)
-                timer.Time = ParseTimeInput();
-        }
+        //private void timeInputTxt_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    if (timeInputTxt.IsFocused)
+        //        timer.Time = ParseTimeInput();
+        //}
 
         private TimeSpan ParseTimeInput()
         {
-            if (int.TryParse(timeInputTxt.Text.Split(':')[0], out int minutes)
-            && (int.TryParse(timeInputTxt.Text.Split(':')[1], out int seconds)))
+            if (timeInputTxt.Text.Contains(":"))
+            {
+                if (int.TryParse(timeInputTxt.Text.Split(':')[0], out int minutes)
+                && (int.TryParse(timeInputTxt.Text.Split(':')[1], out int seconds)))
+                {
+                    TimeSpan ts;
+                    if (minutes >= 60)
+                    {
+                        ts = new TimeSpan(0, 0, 0);
+                        MessageBox.Show("Time more than 60 minutes is not supported");
+                    }
+                    else
+                    {
+                        ts = new TimeSpan(0, minutes, seconds);
+                        Settings.DefaultTime = ts;
+                    }
+                    return ts;
+                }
+                return TimeSpan.Zero;
+            }
+            else if (int.TryParse(timeInputTxt.Text, out int min))
             {
                 TimeSpan ts;
-                if (minutes >= 60)
+                if (min >= 60)
                 {
                     ts = new TimeSpan(0, 0, 0);
                     MessageBox.Show("Time more than 60 minutes is not supported");
                 }
                 else
                 {
-                    ts = new TimeSpan(0, minutes, seconds);
+                    ts = new TimeSpan(0, min, 0);
                     Settings.DefaultTime = ts;
                 }
                 return ts;

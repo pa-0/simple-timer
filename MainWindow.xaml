@@ -9,7 +9,7 @@
         HorizontalAlignment="Center" VerticalAlignment="Center"
         Background="#FF1B1B1B" SizeToContent="WidthAndHeight"
         MouseEnter="window_MouseEnter" Icon="timerIcon25m.ico"
-        MouseLeave="window_MouseLeave" Topmost="True"
+        MouseLeave="window_MouseLeave" Topmost="True" PreviewKeyDown="Window_PreviewKeyDown"
         KeyDown="window_KeyDown" KeyboardNavigation.DirectionalNavigation="Once">
     <Grid Width="115">
         <Grid.RowDefinitions>
@@ -19,8 +19,8 @@
             <TextBox Name="timeInputTxt" Grid.Row="0" FontSize="40"
             Text="{Binding Time, StringFormat=mm\\:ss, Mode=OneWay, FallbackValue=05:00}"
             PreviewMouseLeftButtonDown="timeInputTxt_PreviewMouseLeftButtonDown"
-            MouseRightButtonDown="timeInputTxt_MouseRightButtonDown"
-            TextChanged="timeInputTxt_TextChanged" Height="55" Width="105"
+            PreviewMouseRightButtonDown="timeInputTxt_PreviewMouseRightButtonDown"
+            Height="55" Width="105"
             ContextMenu="{x:Null}" BorderThickness="0" Margin="5 5 5 5"
             Cursor="Arrow" Background="#FF3E3E42" Foreground="White"
             HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
