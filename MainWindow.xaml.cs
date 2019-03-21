@@ -73,6 +73,7 @@ namespace Simple_Timer
             if (e.Key == Key.Up)
             {   // add time
                 timer.Time += Settings.TimeStep;
+                Settings.DefaultTime = timer.Time;
             }
             if (e.Key == Key.Down)
             {   // reduce time
@@ -80,6 +81,7 @@ namespace Simple_Timer
                 if (time.TotalSeconds >= 0)
                 {
                     timer.Time = time;
+                    Settings.DefaultTime = timer.Time;
                 }
             }
         }
