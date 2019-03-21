@@ -9,7 +9,9 @@
         HorizontalAlignment="Center" VerticalAlignment="Center"
         Background="#FF1E1E21" SizeToContent="WidthAndHeight"
         MouseEnter="window_MouseEnter" Icon="timerIcon25m.ico"
-        MouseLeave="window_MouseLeave" KeyDown="window_KeyDown" Topmost="True">
+        MouseLeave="window_MouseLeave" Topmost="True"
+        KeyDown="window_KeyDown" KeyboardNavigation.DirectionalNavigation="Once">
+    <!--PreviewKeyDown="Window_PreviewKeyDown"-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -21,7 +23,7 @@
             MouseRightButtonDown="timeInputTxt_MouseRightButtonDown"
             TextChanged="timeInputTxt_TextChanged" Height="55" Width="105"
             ContextMenu="{x:Null}" Margin="5 5 5 5" Padding="0 0 0 0" BorderThickness="0"
-            Cursor="Arrow" Background="#FF39393E" Foreground="White"
+            Cursor="Arrow" Background="#FF39393E" Foreground="White" GotFocus="timeInputTxt_GotFocus"
             HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
         </TextBox>
 

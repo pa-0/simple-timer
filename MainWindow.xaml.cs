@@ -13,17 +13,17 @@ namespace Simple_Timer
 {
     public partial class MainWindow : Window
     {
-        bool mouseOverWindow = false;
-        const byte windowHeightFull = 120;
-        const byte windowHeightShort = 60;
-        const int expandDelay = 500;
-        const int contractDelay = 2000;
-        const int mouseDownDelay = 150;
-        WinForms.NotifyIcon notifyIcon = null;
-        WinForms.ContextMenu contextMenu;
-        WinForms.MenuItem exitAppMenuItem;
-        WinForms.MenuItem aboutMenuItem;
-        System.ComponentModel.IContainer components;
+        private bool mouseOverWindow = false;
+        private const byte windowHeightFull = 120;
+        private const byte windowHeightShort = 60;
+        private const int expandDelay = 500;
+        private const int contractDelay = 2000;
+        private const int mouseDownDelay = 150;
+        private WinForms.NotifyIcon notifyIcon = null;
+        private WinForms.ContextMenu contextMenu;
+        private WinForms.MenuItem exitAppMenuItem;
+        private WinForms.MenuItem aboutMenuItem;
+        private System.ComponentModel.IContainer components;
 
         readonly Timer timer = new Timer();
 
@@ -169,12 +169,14 @@ namespace Simple_Timer
             //initialize menu items
             exitAppMenuItem.Index = 0;
             exitAppMenuItem.Text = "Exit";
-            exitAppMenuItem.Click += (sender, e) => {
+            exitAppMenuItem.Click += (sender, e) =>
+            {
                 Application.Current.Shutdown();
             };
             aboutMenuItem.Index = 1;
             aboutMenuItem.Text = "About";
-            aboutMenuItem.Click += (sendmer, e) => {
+            aboutMenuItem.Click += (sendmer, e) =>
+            {
                 MessageBox.Show("Author: Slava Logos\nEmail: xivilaim@gmail.com",
                     "Thank you for taking interest!");
             };
@@ -190,6 +192,5 @@ namespace Simple_Timer
             notifyIcon.Icon = Properties.Resources.timerIcon25m;
             notifyIcon.ContextMenu = contextMenu;
         }
-
     }
 }
