@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Simple_Timer"
-        mc:Ignorable="d" Title="Compact Timer" Height="100" Width="115"
+        mc:Ignorable="d" Title="Simple Timer" Height="100" Width="115"
         WindowStyle="None" AllowsTransparency="true" FontFamily="Arial"
         HorizontalAlignment="Center" VerticalAlignment="Center"
         Background="#FF1B1B1B" SizeToContent="WidthAndHeight"

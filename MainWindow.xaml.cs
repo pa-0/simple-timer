@@ -24,6 +24,7 @@ namespace Simple_Timer
         private WinForms.MenuItem exitAppMenuItem;
         private WinForms.MenuItem aboutMenuItem;
         private System.ComponentModel.IContainer components;
+        private About AboutWindow;
 
         readonly Timer timer = new Timer();
 
@@ -177,8 +178,8 @@ namespace Simple_Timer
             aboutMenuItem.Text = "About";
             aboutMenuItem.Click += (sendmer, e) =>
             {
-                MessageBox.Show("Author: Slava Logos\nEmail: xivilaim@gmail.com",
-                    "Thank you for taking interest!");
+                AboutWindow = new About();
+                AboutWindow.Show();
             };
             // initialize context menu
             contextMenu.MenuItems.AddRange(new WinForms.MenuItem[] {
@@ -187,7 +188,7 @@ namespace Simple_Timer
             });
 
             notifyIcon = new WinForms.NotifyIcon(this.components);
-            notifyIcon.Text = "Compact Timer";
+            notifyIcon.Text = "Simple Timer";
             notifyIcon.Visible = true;
             notifyIcon.Icon = Properties.Resources.timerIcon25m;
             notifyIcon.ContextMenu = contextMenu;
