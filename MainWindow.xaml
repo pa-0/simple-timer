@@ -7,11 +7,10 @@
         mc:Ignorable="d" Title="Compact Timer" Height="100" Width="115"
         WindowStyle="None" AllowsTransparency="true" FontFamily="Arial"
         HorizontalAlignment="Center" VerticalAlignment="Center"
-        Background="#FF3E3E42" SizeToContent="WidthAndHeight"
+        Background="#FF1B1B1B" SizeToContent="WidthAndHeight"
         MouseEnter="window_MouseEnter" Icon="timerIcon25m.ico"
         MouseLeave="window_MouseLeave" Topmost="True"
         KeyDown="window_KeyDown" KeyboardNavigation.DirectionalNavigation="Once">
-    <!--PreviewKeyDown="Window_PreviewKeyDown"-->
     <Grid Width="115">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -23,7 +22,7 @@
             MouseRightButtonDown="timeInputTxt_MouseRightButtonDown"
             TextChanged="timeInputTxt_TextChanged" Height="55" Width="105"
             ContextMenu="{x:Null}" BorderThickness="0" Margin="5 5 5 5"
-            Cursor="Arrow" Background="#FF1D1D1D" Foreground="White"
+            Cursor="Arrow" Background="#FF3E3E42" Foreground="White"
             HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             </TextBox>
         <Grid Name="controlsGrid" Margin="5 -3 5 5" Height="35"
@@ -33,13 +32,13 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Name="playPauseBtn" Grid.Column="0" Background="#FF1D1D1D"
+            <Button Name="playPauseBtn" Grid.Column="0" Background="#FF3E3E42"
                     Foreground="White" BorderBrush="#FF1E1E21"
                     BorderThickness="0" Margin="0 0 1 0"
-                    Click="playPauseBtn_Click" Content="{Binding PlayBtnIcon}">
+                    Click="playPauseBtn_Click" Content="{Binding PlayBtnIcon, FallbackValue=>}">
             </Button>
 
-            <Button Name="stopBtn" Grid.Column="1" Background="#FF1D1D1D"
+            <Button Name="stopBtn" Grid.Column="1" Background="#FF3E3E42"
                     Foreground="White" BorderBrush="#FF1E1E21" 
                     BorderThickness="0"
                     Click="stopBtn_Click">■
