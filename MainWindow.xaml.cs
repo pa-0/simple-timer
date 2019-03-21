@@ -59,6 +59,8 @@ namespace Simple_Timer
             {
                 timer.Stop();
             }
+            else
+                timer.Time = Settings.DefaultTime;
         }
 
         private void window_KeyDown(object sender, KeyEventArgs e)
