@@ -7,40 +7,42 @@
         mc:Ignorable="d" Title="Compact Timer" Height="100" Width="115"
         WindowStyle="None" AllowsTransparency="true" FontFamily="Arial"
         HorizontalAlignment="Center" VerticalAlignment="Center"
-        Background="#FF1E1E21" SizeToContent="WidthAndHeight"
+        Background="#FF3E3E42" SizeToContent="WidthAndHeight"
         MouseEnter="window_MouseEnter" Icon="timerIcon25m.ico"
         MouseLeave="window_MouseLeave" Topmost="True"
         KeyDown="window_KeyDown" KeyboardNavigation.DirectionalNavigation="Once">
     <!--PreviewKeyDown="Window_PreviewKeyDown"-->
-    <Grid>
+    <Grid Width="115">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Name="timeInputTxt" Grid.Row="0" FontSize="40"
+            <TextBox Name="timeInputTxt" Grid.Row="0" FontSize="40"
             Text="{Binding Time, StringFormat=mm\\:ss, Mode=OneWay, FallbackValue=05:00}"
             PreviewMouseLeftButtonDown="timeInputTxt_PreviewMouseLeftButtonDown"
             MouseRightButtonDown="timeInputTxt_MouseRightButtonDown"
             TextChanged="timeInputTxt_TextChanged" Height="55" Width="105"
-            ContextMenu="{x:Null}" Margin="5 5 5 5" Padding="0 0 0 0" BorderThickness="0"
-            Cursor="Arrow" Background="#FF39393E" Foreground="White" GotFocus="timeInputTxt_GotFocus"
+            ContextMenu="{x:Null}" BorderThickness="0" Margin="5 5 5 5"
+            Cursor="Arrow" Background="#FF1D1D1D" Foreground="White"
             HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-        </TextBox>
-
-        <Grid Name="controlsGrid" Height="40px" Visibility="Collapsed"
-              Grid.Row="1" Margin="3 -3 3 2">
+            </TextBox>
+        <Grid Name="controlsGrid" Margin="5 -3 5 5" Height="35"
+              Visibility="Visible"
+              Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Name="playPauseBtn" Grid.Column="0" Background="#FF333337"
+            <Button Name="playPauseBtn" Grid.Column="0" Background="#FF1D1D1D"
                     Foreground="White" BorderBrush="#FF1E1E21"
-                    BorderThickness="2" Click="playPauseBtn_Click" Content="{Binding PlayBtnIcon}">
+                    BorderThickness="0" Margin="0 0 1 0"
+                    Click="playPauseBtn_Click" Content="{Binding PlayBtnIcon}">
             </Button>
 
-            <Button Name="stopBtn" Grid.Column="1" Background="#FF333337"
+            <Button Name="stopBtn" Grid.Column="1" Background="#FF1D1D1D"
                     Foreground="White" BorderBrush="#FF1E1E21" 
-                    BorderThickness="2" Click="stopBtn_Click">■
+                    BorderThickness="0"
+                    Click="stopBtn_Click">■
             </Button>
         </Grid>
     </Grid>
