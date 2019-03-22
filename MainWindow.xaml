@@ -9,7 +9,7 @@
         HorizontalAlignment="Center" VerticalAlignment="Center"
         Background="#FF1B1B1B" SizeToContent="WidthAndHeight"
         MouseEnter="window_MouseEnter" Icon="timerIcon25m.ico"
-        MouseLeave="window_MouseLeave" Topmost="True" PreviewKeyDown="Window_PreviewKeyDown"
+        MouseLeave="window_MouseLeave" PreviewKeyDown="Window_PreviewKeyDown"
         KeyDown="window_KeyDown" KeyboardNavigation.DirectionalNavigation="Once">
     <Grid Width="115">
         <Grid.RowDefinitions>

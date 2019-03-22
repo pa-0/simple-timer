@@ -24,8 +24,10 @@ namespace Simple_Timer
         private WinForms.ContextMenu contextMenu;
         private WinForms.MenuItem exitAppMenuItem;
         private WinForms.MenuItem aboutMenuItem;
+        private WinForms.MenuItem settingsMenuItem;
         private System.ComponentModel.IContainer components;
-        private About AboutWindow;
+        private About aboutWindow;
+        private Settings settingsWindow;
 
         readonly Timer timer = new Timer();
 
@@ -34,7 +36,10 @@ namespace Simple_Timer
             InitializeComponent();
             DataContext = timer;
             ShowInTaskbar = false;
+            Topmost = Settings.AlwaysOnTop;
             SetupTrayIcon();
+            if (Settings.StartOnStartup)
+                timer.Start();
         }
 
         private void timeInputTxt_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -87,7 +92,8 @@ namespace Simple_Timer
             if (e.Key == Key.Up)
             {   // add time
                 timer.Time += Settings.TimeStep;
-                Settings.DefaultTime = timer.Time;
+                if (Settings.AutosaveTime)
+                    Settings.DefaultTime = timer.Time;
                 customTime = true;
             }
             if (e.Key == Key.Down)
@@ -96,7 +102,8 @@ namespace Simple_Timer
                 if (time.TotalSeconds >= 0)
                 {
                     timer.Time = time;
-                    Settings.DefaultTime = timer.Time;
+                    if (Settings.AutosaveTime)
+                        Settings.DefaultTime = timer.Time;
                     customTime = true;
                 }
             }
@@ -153,7 +160,8 @@ namespace Simple_Timer
                     else
                     {
                         ts = new TimeSpan(0, minutes, seconds);
-                        Settings.DefaultTime = ts;
+                        if (Settings.AutosaveTime)
+                            Settings.DefaultTime = ts;
                     }
                     return ts;
                 }
@@ -170,7 +178,8 @@ namespace Simple_Timer
                 else
                 {
                     ts = new TimeSpan(0, min, 0);
-                    Settings.DefaultTime = ts;
+                    if (Settings.AutosaveTime)
+                        Settings.DefaultTime = ts;
                 }
                 return ts;
             }
@@ -193,31 +202,52 @@ namespace Simple_Timer
             FocusManager.SetFocusedElement(scope, parent as IInputElement);
         }
 
+        private void SettingChanged(string settingName)
+        {
+            switch (settingName)
+            {
+                case "Topmost":
+                    Topmost = Settings.AlwaysOnTop;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private void SetupTrayIcon()
         {
             contextMenu = new WinForms.ContextMenu();
             exitAppMenuItem = new WinForms.MenuItem();
             aboutMenuItem = new WinForms.MenuItem();
+            settingsMenuItem = new WinForms.MenuItem();
 
             this.components = new System.ComponentModel.Container();
             //initialize menu items
-            exitAppMenuItem.Index = 0;
-            exitAppMenuItem.Text = "Exit";
-            exitAppMenuItem.Click += (sender, e) =>
-            {
-                Application.Current.Shutdown();
-            };
-            aboutMenuItem.Index = 1;
             aboutMenuItem.Text = "About";
             aboutMenuItem.Click += (sendmer, e) =>
             {
-                AboutWindow = new About();
-                AboutWindow.Show();
+                aboutWindow = new About();
+                aboutWindow.Show();
+            };
+            settingsMenuItem.Text = "Settings";
+            settingsMenuItem.Click += (sender, e) =>
+            {
+                settingsWindow = new Settings();
+                settingsWindow.SettingChanged += SettingChanged;
+                settingsWindow.Show();
+            };
+            Thread.Sleep(50);
+            exitAppMenuItem.Text = "Exit";
+            exitAppMenuItem.Click += (sender, e) =>
+            {
+                Properties.Settings.Default.Save();
+                Application.Current.Shutdown();
             };
             // initialize context menu
             contextMenu.MenuItems.AddRange(new WinForms.MenuItem[] {
                 aboutMenuItem,
-                exitAppMenuItem
+                exitAppMenuItem,
+                settingsMenuItem
             });
 
             notifyIcon = new WinForms.NotifyIcon(this.components);

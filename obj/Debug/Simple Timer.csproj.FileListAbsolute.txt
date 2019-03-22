@@ -15,3 +15,5 @@ C:\Users\User\Projects\Simple Timer\Simple Timer\obj\Debug\Simple Timer.pdb
 C:\Users\User\Projects\Simple Timer\Simple Timer\obj\Debug\Simple Timer.csprojResolveAssemblyReference.cache
 C:\Users\User\Projects\Simple Timer\Simple Timer\obj\Debug\About.baml
 C:\Users\User\Projects\Simple Timer\Simple Timer\obj\Debug\About.g.cs
+C:\Users\User\Projects\Simple Timer\Simple Timer\obj\Debug\Settings.g.cs
+C:\Users\User\Projects\Simple Timer\Simple Timer\obj\Debug\Settings.baml
