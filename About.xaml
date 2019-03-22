@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <TextBlock Padding="5" Grid.Row="0">Simple Timer v1.0</TextBlock>
         <TextBlock Padding="5" Grid.Row="1">Written by Slava Logos</TextBlock>
-        <Button Margin="5" Content="xivilaim@gmail.com"
+        <Button Margin="5" Content="logos.slava@gmail.com"
                 Cursor="Hand" Grid.Row="2" Click="Button_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">

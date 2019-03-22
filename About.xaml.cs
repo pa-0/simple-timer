@@ -27,7 +27,7 @@ namespace Simple_Timer
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("mailto:xivilaim@gmail.com");
+            Process.Start("mailto:logos.slava@gmail.com");
         }
 
         private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)

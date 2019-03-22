@@ -130,20 +130,12 @@ namespace Simple_Timer
                     if (!mouseOverWindow)
                     {
                         controlsGrid.Visibility = Visibility.Collapsed;
-                        //Height = windowHeightShort; // contract window height 50%
-                        //SwitchToTimeDisplay();
                     }
                 });
             });
             if (timeInputTxt.IsFocused)
                 defocus();
         }
-
-        //private void timeInputTxt_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    if (timeInputTxt.IsFocused)
-        //        timer.Time = ParseTimeInput();
-        //}
 
         private TimeSpan ParseTimeInput()
         {
